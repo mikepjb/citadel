@@ -4,4 +4,5 @@
 
 (deftest pacman-interop
   (testing "detecting if a package is installed"
-    (is (citadel/exists? "bash"))))
+    (is (citadel/exists? "bash"))
+    (is (not (citadel/exists? "not-a-program")))))
