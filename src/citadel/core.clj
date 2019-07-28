@@ -9,9 +9,32 @@
 (def packages
   [{:name "clojure"}
    {:name "ripgrep"}
-   {:name "openjdk10-src" :comment "for Clojure source jumping"}])
+   {:name "openjdk10-src" :comment "for Clojure source jumping"}
+   {:name "ttf-dejavu"}
+   {:name "ttf-liberation"}
+   {:name "noto-fonts"}])
+
+;; sudo pacman -S ttf-dejavu ttf-liberation noto-fonts
+
+(defn refresh-database
+  "Loads fresh information about available Arch packages."
+  []
+  (sh "pacman" "-Sy"))
 
 (defn exists?
   [package-name]
-  (= 0 (:exit (sh "pacman" "-Qk" package-name))))
+  (zero? (:exit (sh "pacman" "-Qk" package-name))))
 
+(defn install
+  [package-name]
+  (zero? (:exit (sh "pacman" "-S" "--noconfirm" package-name))))
+
+(defn ensure
+  [package-name]
+  (if-not (exists? package-name)
+    (install package-name)))
+
+(defn main
+  "Entrypoint for "
+  []
+  (map #(exists? (:name %)) packages))

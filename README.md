@@ -11,3 +11,7 @@ This citadel is a collection of code that sets up an Arch Linux system as a deve
 ### Development
 
 You can build a new version of Citadel by running the make command.
+
+#### References
+
+[https://www.reddit.com/r/archlinux/comments/5r5ep8/make_your_arch_fonts_beautiful_easily/]
