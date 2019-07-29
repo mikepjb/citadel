@@ -1,4 +1,4 @@
-<img src="citadel-logo.svg" alt="Citadel Logo" width="128" height="128">)
+<img src="citadel-logo.svg" alt="Citadel Logo" width="128" height="128">
 
 # Citadel
 
