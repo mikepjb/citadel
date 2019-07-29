@@ -13,7 +13,8 @@
    {:name "openjdk10-src" :comment "for Clojure source jumping"}
    {:name "ttf-dejavu"}
    {:name "ttf-liberation"}
-   {:name "noto-fonts"}])
+   {:name "noto-fonts"}
+   {:name "inkscape"}])
 
 ;; sudo pacman -S ttf-dejavu ttf-liberation noto-fonts
 
