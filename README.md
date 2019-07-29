@@ -1,4 +1,4 @@
-[](citadel-logo.svg)
+[![Citadel Logo](citadel-logo.svg)]
 
 # Citadel
 
