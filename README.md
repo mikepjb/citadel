@@ -1,3 +1,5 @@
+[](citadel-logo.svg)
+
 # Citadel
 
 A citadel is the core fortified area of a town, city or in this case a computer system.
