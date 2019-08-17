@@ -31,12 +31,17 @@
   [package-name]
   (zero? (:exit (sh "pacman" "-S" "--noconfirm" package-name))))
 
-(defn ensure
-  [package-name]
-  (if-not (exists? package-name)
-    (install package-name)))
+; (defn ensure
+;   [package-name]
+;   (if-not (exists? package-name)
+;     (install package-name)))
 
-(defn main
+(defn -main
   "Entrypoint for "
   []
-  (map #(exists? (:name %)) packages))
+  (println "hello")
+  ; (println (map #(exists? (:name %)) packages))
+  )
+
+;; (exists? "gimp")
+;; (sh "sudo" "ls")
