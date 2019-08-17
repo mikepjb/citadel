@@ -6,6 +6,7 @@
           :main-opts ["-m" "nrepl.cmdline"]}
   :build {:extra-deps {pack/pack.alpha
                        {:git/url "https://github.com/juxt/pack.alpha.git"
-                        :sha "dccf2134bcf03726a9465d2b9997c42e5cd91bff"}}
+                        :sha "dccf2134bcf03726a9465d2b9997c42e5cd91bff"
+                        :exclusions [org.slf4j/slf4j-nop]}}
           :main-opts ["-m" "mach.pack.alpha.capsule citadel.jar"
                       "-m" "citadel.core"]}}}
