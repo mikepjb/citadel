@@ -1,5 +1,6 @@
 (ns citadel.core
-  (:require [clojure.java.shell :refer [sh]]))
+  (:require [clojure.java.shell :refer [sh]])
+  (:refer-clojure :exclude [ensure]))
 
 ;; Tasks for Citadel
 ;; 1. Install selection of packages
@@ -15,9 +16,8 @@
    {:name "ttf-liberation"}
    {:name "noto-fonts"}
    {:name "xautolock"}
+   {:name "bolt"}
    {:name "inkscape"}])
-
-;; sudo pacman -S ttf-dejavu ttf-liberation noto-fonts
 
 (defn refresh-database
   "Loads fresh information about available Arch packages."
@@ -30,19 +30,24 @@
 
 (defn install
   [package-name]
-  (zero? (:exit (sh "pacman" "-S" "--noconfirm" package-name))))
+  (let [process (sh "sudo" "pacman" "-S" "--noconfirm" package-name)]
+    (println process)
+    (zero? (:exit process))))
 
-; (defn ensure
-;   [package-name]
-;   (if-not (exists? package-name)
-;     (install package-name)))
+(defn ensure
+  [package-name]
+  (when-not (exists? package-name)
+    (install package-name)))
 
 (defn -main
   "Entrypoint for "
   []
-  (println "hello")
-  ; (println (map #(exists? (:name %)) packages))
+  (->> packages
+       (map :name)
+       (map ensure)
+       println)
+  ;; (shutdown-agents) ;; some processes hang around when using sudo
+  ;; interestingly, calling shutdown-agents shuts down the nREPl connection too so this is not a good solution.
   )
 
-;; (exists? "gimp")
-;; (sh "sudo" "ls")
+(-main)
