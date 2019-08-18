@@ -14,6 +14,7 @@
    {:name "ttf-dejavu"}
    {:name "ttf-liberation"}
    {:name "noto-fonts"}
+   {:name "xautolock"}
    {:name "inkscape"}])
 
 ;; sudo pacman -S ttf-dejavu ttf-liberation noto-fonts
