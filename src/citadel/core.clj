@@ -39,15 +39,14 @@
   (when-not (exists? package-name)
     (install package-name)))
 
-(defn -main
-  "Entrypoint for "
-  []
+(defn ensure-all [packages]
   (->> packages
        (map :name)
        (map ensure)
-       println)
-  ;; (shutdown-agents) ;; some processes hang around when using sudo
-  ;; interestingly, calling shutdown-agents shuts down the nREPl connection too so this is not a good solution.
-  )
+       println))
 
-(-main)
+(defn -main
+  "Entrypoint for "
+  []
+  (ensure-all packages)
+  (shutdown-agents)) ;; some processes hang around when using sudo
