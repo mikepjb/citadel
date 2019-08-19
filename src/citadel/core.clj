@@ -11,6 +11,7 @@
   [{:name "clojure"}
    {:name "ripgrep"}
    {:name "telegram-desktop"}
+   {:name "openjdk8-src" :comment "for Clojure source jumping"}
    {:name "openjdk10-src" :comment "for Clojure source jumping"}
    {:name "ttf-dejavu"}
    {:name "ttf-liberation"}
