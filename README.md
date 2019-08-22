@@ -11,6 +11,9 @@ This citadel is a collection of code that sets up an Arch Linux system as a deve
 You can with just `clj` but in most cases you will want to integrate with your editor of choice over a nREPL connection, this should do the trick:  
 `clj -Sdeps '{:deps {nrepl/nrepl {:mvn/version "0.5.3"}}}' -m nrepl.cmdline`
 
+Citadel can be run from the command line in this directory with:
+`clj -m citadel.core ~/toolkit/system.edn`
+
 ### System Map Example
 
 ```

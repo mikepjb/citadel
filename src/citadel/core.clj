@@ -1,5 +1,6 @@
 (ns citadel.core
-  (:require [clojure.java.shell :refer [sh]])
+  (:require [clojure.java.shell :refer [sh]]
+            [clojure.java.io :as io])
   (:refer-clojure :exclude [ensure]))
 
 ;; Tasks for Citadel
@@ -40,20 +41,19 @@
   (when-not (exists? package-name)
     (install package-name)))
 
-(defn ensure-all [packages]
-  (->> packages
-       (map :name)
-       (map ensure)
-       println))
-
 (defn read-deps [system-map]
   (map first (:deps system-map)))
 
+;; XXX this is now pretty big, since -main isn't tested let's thin this out.
 (defn -main
   "Entrypoint for "
   [& args]
   (if-not (empty? args)
-    (let [system-map (first args)]
-      (println "--> Reading" system-map)))
-  ;; (ensure-all packages)
+    (let [map-path   (first args)
+          system-map (read-string (slurp (io/file map-path)))
+          deps       (map str (read-deps system-map))]
+      (println "--> Reading from" map-path)
+      (println deps)
+      (doseq [dep deps]
+        (ensure dep))))
   (shutdown-agents)) ;; some processes hang around when using sudo
