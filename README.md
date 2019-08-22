@@ -11,6 +11,16 @@ This citadel is a collection of code that sets up an Arch Linux system as a deve
 You can with just `clj` but in most cases you will want to integrate with your editor of choice over a nREPL connection, this should do the trick:  
 `clj -Sdeps '{:deps {nrepl/nrepl {:mvn/version "0.5.3"}}}' -m nrepl.cmdline`
 
+### System Map Example
+
+```
+{:deps
+ {ripgrep {}
+  telegram-desktop {}
+  openjdk8-src {:comment "for Clojure source jumping"}
+  toolkit {:git "github.com/mikepjb/toolkit"}}}
+```
+
 ### Development
 
 You can build a new version of Citadel by running the make command.
