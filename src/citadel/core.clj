@@ -46,8 +46,14 @@
        (map ensure)
        println))
 
+(defn read-deps [system-map]
+  (map first (:deps system-map)))
+
 (defn -main
   "Entrypoint for "
-  []
-  (ensure-all packages)
+  [& args]
+  (if-not (empty? args)
+    (let [system-map (first args)]
+      (println "--> Reading" system-map)))
+  ;; (ensure-all packages)
   (shutdown-agents)) ;; some processes hang around when using sudo
