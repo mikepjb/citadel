@@ -26,15 +26,72 @@
                 e))
             config))
 
+(defn font [place name size weight]
+  [:font {:place place}
+   [:name name]
+   [:size size]
+   [:weight weight]
+   [:slant "normal"]])
+
 (defn rc []
   (indent-str
    (sexp-as-element
     (convert-keywords 
      [:openbox-config {:xmlns "http://openbox.org/3.4/rc"
                        :xmlns:xi "http://www.w3.org/2001/XInclude"}
-      [:resistance
-       [:strength 10]
-       [:screen-edge-strength 20]]
+      [:resistance [:strength 10] [:screen-edge-strength 20]]
+
       [:focus
        [:focus-new "yes"]
-       [:follow-mouse "no"]]]))))
+       [:follow-mouse "no"]
+       [:focus-last "yes"]
+       [:under-mouse "no"]
+       [:focus-delay 0]
+       [:raise-on-focus "no"]]
+      
+      [:placement
+       [:policy "Smart"]
+       [:center "yes"]
+       [:monitor "Primary"]
+       [:primaryMonitor "Active"]]
+      
+      [:theme
+       [:name "Clearlooks"]
+       [:corner-radius 0]
+       [:keep-border "no"]
+       [:animate-iconify "yes"]
+       (font "ActiveWindow" "Noto Sans" 12 "bold")
+       (font "InactiveWindow" "Noto Sans" 12 "bold")
+       (font "MenuHeader" "Noto Sans" 12 "bold")
+       (font "MenuItem" "Noto Sans" 12 "normal")
+       (font "ActiveOnScreenDisply" "Noto Sans" 12 "bold")
+       (font "InactiveOnScreenDisply" "Noto Sans" 12 "bold")
+       [:title-layout "NLIMC"]
+       [:desktops
+        [:number 1]
+        [:firstdesk 1]
+        [:popup-time 0]]
+       [:resize
+        [:draw-contents "yes"]
+        [:popup-show "Nonpixel"]
+        [:popup-position "Center"]
+        [:popup-fixed-position [:x 10] [:y 10]]]
+       [:margins [:top 0] [:bottom 0] [:left 0] [:right 0]]]
+
+      [:keyboard
+       [:chain-quit-key "C-g"]
+       [:keybind {:key "A-F4"} [:action {:name "Close"}]]
+       [:keybind {:key "A-Tab"} [:action {:name "NextWindow"}
+                                 [:finalactions
+                                  [:action {:name "Focus"}]
+                                  [:action {:name "Raise"}]
+                                  [:action {:name "Unshade"}]]]]
+       [:keybind {:key "A-Tab"} [:action {:name "PreviousWindow"}
+                                 [:finalactions
+                                  [:action {:name "Focus"}]
+                                  [:action {:name "Raise"}]
+                                  [:action {:name "Unshade"}]]]]
+
+       [:keybind {:key "A-S-E"} [:action {:name "Exit"} [:prompt "no"]]]
+       [:keybind {:key "A-S-N"} [:action {:name "Execute"} [:command "xterm"]]]
+       [:keybind {:key "A-S-P"} [:action {:name "Execute"} [:command "emacs"]]]]]))))
