@@ -1,5 +1,6 @@
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.1"}}
+ {org.clojure/clojure {:mvn/version "1.10.1"}
+  org.clojure/data.xml {:mvn/version "0.2.0-alpha6"}}
  :paths ["src" "test" "resources"]
  :aliases
  {:build {:extra-deps {pack/pack.alpha
@@ -7,4 +8,7 @@
                         :sha "dccf2134bcf03726a9465d2b9997c42e5cd91bff"
                         :exclusions [org.slf4j/slf4j-nop]}}
           :main-opts ["-m" "mach.pack.alpha.capsule citadel.jar"
-                      "-m" "citadel.core"]}}}
+                      "-m" "citadel.core"]}
+  :test {:extra-deps {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                                 :sha "209b64504cb3bd3b99ecfec7937b358a879f55c1"}}
+         :main-opts ["-m" "cognitect.test-runner"]}}}
