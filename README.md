@@ -2,6 +2,9 @@
 
 # Citadel
 
+[![CircleCI](https://circleci.com/gh/mikepjb/citadel.svg?style=svg)](https://circleci.com/gh/mikepjb/citadel)
+
+
 A citadel is the core fortified area of a town, city or in this case a computer system.
 
 This citadel is a collection of code that sets up an Arch Linux system as a development environment.
