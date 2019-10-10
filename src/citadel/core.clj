@@ -48,6 +48,7 @@
 (defn -main
   "Entrypoint for "
   [& args]
+  (println "Welcome. Test Print.")
   (if-not (empty? args)
     (let [map-path   (first args)
           system-map (read-string (slurp (io/file map-path)))

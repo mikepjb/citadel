@@ -1,0 +1,17 @@
+#!/bin/sh -e
+#
+# This script compiles an uberjar'd version of the Citadel project and produces
+# a GNU/Linux executable of the program using GraalVM.
+
+# Arch Packages required zlib, glibc, graalvm-bin, graalvm-native-image-bin
+
+clj -A:build # build the uberjar
+
+if [ -f 'citadel.jar' ]; then
+    echo 'found citadel.jar, proceeding to build linux executable...'
+    native-image \
+	-H:+ReportUnsupportedElementsAtRuntime \
+	-J-Xmx3G -J-Xms3G --no-server \
+	-jar citadel.jar
+
+fi
