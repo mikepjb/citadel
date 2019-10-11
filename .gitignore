@@ -2,3 +2,5 @@
 .nrepl-port
 *.jar
 .eastwood
+classes/*
+citadel
