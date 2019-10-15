@@ -4,22 +4,23 @@
   camel-snake-kebab {:mvn/version "0.4.0"}}
  :paths ["src" "test" "resources"]
  :aliases
- {:build {:extra-deps {pack/pack.alpha
-                       {:git/url "https://github.com/juxt/pack.alpha.git"
-                        :sha "2769a6224bfb938e777906ea311b3daf7d2220f5"}}
-          :main-opts ["-m" "mach.pack.alpha.capsule citadel.jar"
-                      "-m" "citadel.core"]}
-  :test {:extra-deps {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
+ {:test {:extra-deps {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
                                                  :sha "209b64504cb3bd3b99ecfec7937b358a879f55c1"}}
          :main-opts ["-m" "cognitect.test-runner"]}
-  :graal-build {:main-opts ["-m clj.native-image citadel.core"
-                            "--initialize-at-build-time"
-                            ;; optional native image name override
-                            "-H:Name=citadel"
-                            "-H:FallbackThreshold=0" ;; never create jdk reliant binaries.
-                            ]
-                :jvm-opts ["-Dclojure.compiler.direct-linking=true"]
-                :extra-deps
-                {clj.native-image
-                 {:git/url "https://github.com/taylorwood/clj.native-image.git"
-                  :sha "7708e7fd4572459c81f6a6b8e44c96f41cdd92d4"}}}}}
+  :build-jar {:extra-deps {pack/pack.alpha
+                           {:git/url "https://github.com/juxt/pack.alpha.git"
+                            :sha "2769a6224bfb938e777906ea311b3daf7d2220f5"}}
+              :main-opts ["-m" "mach.pack.alpha.capsule citadel.jar"
+                          "-m" "citadel.core"]}
+  :build-bin {:main-opts ["-m clj.native-image citadel.core"
+                          "--initialize-at-build-time"
+                          "--report-unsupported-elements-at-runtime"
+                          ;; optional native image name override
+                          "-H:Name=citadel"
+                          "-H:FallbackThreshold=0" ;; never create jdk reliant binaries.
+                          ]
+              :jvm-opts ["-Dclojure.compiler.direct-linking=true"]
+              :extra-deps
+              {clj.native-image
+               {:git/url "https://github.com/taylorwood/clj.native-image.git"
+                :sha "7708e7fd4572459c81f6a6b8e44c96f41cdd92d4"}}}}}
