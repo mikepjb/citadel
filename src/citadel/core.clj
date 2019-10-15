@@ -51,7 +51,6 @@
       citadel check
       citadel help")
 
-;; XXX this is now pretty big, since -main isn't tested let's thin this out.
 (defn -main
   "Entrypoint for "
   [& args]
