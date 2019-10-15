@@ -4,23 +4,10 @@
   (:refer-clojure :exclude [ensure])
   (:gen-class))
 
-;; Tasks for Citadel
-;; 1. Install selection of packages
-;; 2. Warn/Remove undeclared packages
-;; 3. Link configuration files from this repo => their destinations
-
-(def packages
-  [{:name "clojure"}
-   {:name "ripgrep"}
-   {:name "telegram-desktop"}
-   {:name "openjdk8-src" :comment "for Clojure source jumping"}
-   {:name "openjdk10-src" :comment "for Clojure source jumping"}
-   {:name "ttf-dejavu"}
-   {:name "ttf-liberation"}
-   {:name "noto-fonts"}
-   {:name "xautolock"}
-   {:name "bolt"}
-   {:name "inkscape"}])
+(defn connected?
+  "Are we connected to the internet?"
+  []
+  false)
 
 (defn refresh-database
   "Loads fresh information about available Arch packages."
@@ -55,6 +42,8 @@
           deps       (map str (read-deps system-map))]
       (println "--> Reading from" map-path)
       (println deps)
-      (doseq [dep deps]
-        (ensure dep))))
+      (when connected?
+        (refresh-database)
+        (doseq [dep deps]
+          (ensure dep)))))
   (shutdown-agents)) ;; some processes hang around when using sudo
