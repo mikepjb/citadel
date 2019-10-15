@@ -11,12 +11,17 @@ Even more ideally, we can create custom boot images.
 ## Proposed tasks
 
 - update (takes system.edn and ensures)
+- check (runs a series of checks on the system to help secure/apply best practice.)
 
 ## Tasks
 
-- Check for internet connection
+- [X] Check for internet connection
+- Conditional to receiving a varity of commands
+- Provide help when noting is provided (find inspiration)
 - Display output of external processes (out only)
 - Display output of external processes (stream?)
 - Display output of external processes (color code log like logrus for error?)
 - Include set of default applications
 - Keep installed packages lean (and clean package/notify current size?)
+- Check secure password? (find something small to check security wise, perhaps the presence of a package?)
+

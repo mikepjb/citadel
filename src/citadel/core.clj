@@ -32,12 +32,8 @@
 (defn read-deps [system-map]
   (map first (:deps system-map)))
 
-;; XXX this is now pretty big, since -main isn't tested let's thin this out.
-(defn -main
-  "Entrypoint for "
-  [& args]
-  (if-not (empty? args)
-    (let [map-path   (first args)
+(defn system-update [args]
+  (let [map-path   (first args)
           system-map (read-string (slurp (io/file map-path)))
           deps       (map str (read-deps system-map))]
       (println "--> Reading from" map-path)
@@ -46,4 +42,16 @@
         (refresh-database)
         (doseq [dep deps]
           (ensure dep)))))
+
+;; XXX this is now pretty big, since -main isn't tested let's thin this out.
+(defn -main
+  "Entrypoint for "
+  [& args]
+  (if-not (empty? args)
+    (case (keyword (first args))
+      :update (println "ok i will update now")
+      :check  (println "ok i will make some basic checks")
+      (println "that is not a valid argument.")
+      )
+    (println "No argument provided [print help]"))
   (shutdown-agents)) ;; some processes hang around when using sudo
