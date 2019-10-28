@@ -17,7 +17,7 @@ Even more ideally, we can create custom boot images.
 
 - [X] Check for internet connection
 - [X] Conditional to receiving a varity of commands
-- Provide help when nothing is provided (find inspiration)
+- [X] Provide help when nothing is provided (find inspiration)
 - Display output of external processes (out only)
 - Display output of external processes (stream?)
 - Display output of external processes (color code log like logrus for error?)
