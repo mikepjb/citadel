@@ -1,7 +1,8 @@
 (ns citadel.core
   (:require [clojure.java.shell :refer [sh]]
             [clojure.java.io :as io]
-            [citadel.check :as check])
+            [citadel.check :as check]
+            [citadel.essential :as essential])
   (:refer-clojure :exclude [ensure])
   (:gen-class))
 
@@ -37,7 +38,8 @@
   "Take the path of a system.edn file and update the system based on this."
   [map-path]
   (let [system-map (read-string (slurp (io/file map-path)))
-        deps       (map str (read-deps system-map))]
+        merged-map (essential/with-deps system-map)
+        deps       (map str (read-deps merged-map))]
     (println "--> Reading from" map-path)
     (println deps)
     (when connected?

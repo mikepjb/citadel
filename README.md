@@ -15,6 +15,7 @@ A tool for Arch Linux, it helps you with 3 tasks:
 This project is incomplete, here is the progress:
 
 - [x] Install official packages via `system.edn`
+- [x] Include essential system map to merge with user provided version
 - [ ] Specify linux-lts (kernel choice) in `system.edn`
 - [ ] Create `system.edn` on fresh install
 - [ ] use repo url e.g toolkit to setup new machine, citadel create https://github.com/mikepjb/toolkit.git or pipe edn?
@@ -22,7 +23,7 @@ This project is incomplete, here is the progress:
 - [ ] BP: Check for swap file
 - [ ] BP: Check for automatic wifi connection (netctl-auto)
 - [ ] BP: Check for straight EFI OS loading
-- [X] BP: ensure intel-ucode exists for processors that need it (any intel for now)
+- [x] BP: ensure intel-ucode exists for processors that need it (any intel for now)
 - [ ] Ensure Gimp font is set to a suitable size (gtkrc 2)
 - [ ] write system font to all config files (e.g gtkrc 2, gtkrc 3.. whereever else? i3 config?)
 - [ ] setting console font too.
