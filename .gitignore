@@ -3,4 +3,5 @@
 *.jar
 .eastwood
 classes/*
-citadel
+/citadel
+/graalvm
