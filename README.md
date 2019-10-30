@@ -15,15 +15,24 @@ A tool for Arch Linux, it helps you with 3 tasks:
 This project is incomplete, here is the progress:
 
 - [x] Install official packages via `system.edn`
-- [ ] Install AUR packages via `system.edn`
-- [ ] Mark versions for packages in `system.edn`
 - [ ] Specify linux-lts (kernel choice) in `system.edn`
 - [ ] Create `system.edn` on fresh install
+- [ ] use repo url e.g toolkit to setup new machine, citadel create https://github.com/mikepjb/toolkit.git or pipe edn?
 - [ ] BP: Check for encrypted root disk
 - [ ] BP: Check for swap file
 - [ ] BP: Check for automatic wifi connection (netctl-auto)
 - [ ] BP: Check for straight EFI OS loading
-- [ ] BP: ensure intel-ucode exists for processors that need it (any intel for now)
+- [X] BP: ensure intel-ucode exists for processors that need it (any intel for now)
+- [ ] Ensure Gimp font is set to a suitable size (gtkrc 2)
+- [ ] write system font to all config files (e.g gtkrc 2, gtkrc 3.. whereever else? i3 config?)
+- [ ] setting console font too.
+- [ ] Mark versions for packages in `system.edn`
+- [ ] Install AUR packages via `system.edn`
+
+### Checks
+- [ ] is using modesetting (better than intel)
+- [ ] is a member of video group? (allows changing brightness using modesetting)
+- [ ] is power button set to inactive (except for forcing) to prevent accidental shutdown?
 
 
 ---
@@ -59,3 +68,4 @@ You can build a new version of Citadel by running the make command.
 #### References
 
 [https://www.reddit.com/r/archlinux/comments/5r5ep8/make_your_arch_fonts_beautiful_easily/]
+[https://wiki.archlinux.org/index.php/General_recommendations]

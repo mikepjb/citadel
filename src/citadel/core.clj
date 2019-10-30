@@ -1,6 +1,7 @@
 (ns citadel.core
   (:require [clojure.java.shell :refer [sh]]
-            [clojure.java.io :as io])
+            [clojure.java.io :as io]
+            [citadel.check :as check])
   (:refer-clojure :exclude [ensure])
   (:gen-class))
 
@@ -57,7 +58,7 @@
   (if-not (empty? args)
     (case (keyword (first args))
       :update (system-update (second args))
-      :check  (println "ok i will make some basic checks")
+      :check  (check/all)
       :help (println help-message)
       (println "that is not a valid argument.")
       )

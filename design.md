@@ -25,3 +25,9 @@ Even more ideally, we can create custom boot images.
 - Keep installed packages lean (and clean package/notify current size?)
 - Check secure password? (find something small to check security wise, perhaps the presence of a package?)
 - Integration test (test cli input)
+
+## Notes on suggested setup
+
+- A swap partition is not needed, especially for systems with SSDs a swap file offers the same performance and a simpler partition table.
+
+- linux-lts is a better default and nice to have as a backup. I've had problems with docker/virtualbox/displaylink previously on the latest kernel at various points in time.
