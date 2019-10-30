@@ -17,8 +17,7 @@ This project is incomplete, here is the progress:
 - [x] Install official packages via `system.edn`
 - [x] Include essential system map to merge with user provided version
 - [ ] Specify linux-lts (kernel choice) in `system.edn`
-- [ ] Create `system.edn` on fresh install
-- [ ] use repo url e.g toolkit to setup new machine, citadel create https://github.com/mikepjb/toolkit.git or pipe edn?
+- [x] use repo url e.g toolkit to setup new machine
 - [ ] BP: Check for encrypted root disk
 - [ ] BP: Check for swap file
 - [ ] BP: Check for automatic wifi connection (netctl-auto)
@@ -34,6 +33,11 @@ This project is incomplete, here is the progress:
 - [ ] is a member of video group? (allows changing brightness using modesetting)
 - [ ] is power button set to inactive (except for forcing) to prevent accidental shutdown?
 
+
+### Try it out
+
+`java -jar citadel.jar update ~/toolkit/system.edn`
+`java -jar citadel.jar update https://raw.githubusercontent.com/mikepjb/toolkit/master/system.edn`
 
 ---
 

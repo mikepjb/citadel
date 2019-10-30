@@ -43,7 +43,7 @@
 (defn system-update
   "Take the path of a system.edn file and update the system based on this."
   [map-path]
-  (let [system-map (read-string (slurp (io/file map-path)))
+  (let [system-map (read-string (slurp map-path))
         merged-map (essential/with-deps system-map)
         deps       (map str (read-deps merged-map))]
     (println "--> Reading from" map-path)
