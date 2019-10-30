@@ -2,7 +2,8 @@
   "Make sure the system is in ship shape."
   (:require [clojure.java.shell :refer [sh]]
             [cheshire.core :refer :all]
-            [clojure.string :refer [includes?]]))
+            [clojure.string :refer [includes?]]
+            [clojure.java.io :as io]))
 
 (def intel?
   "Does the machine have an Intel CPU?"
@@ -15,7 +16,10 @@
 
 (def includes-microcode?
   "Are we including microcode during boot?"
-  (includes? (slurp "/boot/loader/entries/arch.conf") "ucode"))
+  (let [boot-file (io/as-file "/boot/loader/entries/arch.conf")]
+    (if (.exists boot-file)
+      (includes? (slurp boot-file) "ucode")
+      false)))
 
 (defn notify-error [msg]
   (println msg)
