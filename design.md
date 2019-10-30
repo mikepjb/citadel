@@ -31,3 +31,7 @@ Even more ideally, we can create custom boot images.
 - A swap partition is not needed, especially for systems with SSDs a swap file offers the same performance and a simpler partition table.
 
 - linux-lts is a better default and nice to have as a backup. I've had problems with docker/virtualbox/displaylink previously on the latest kernel at various points in time.
+
+## Notes on checks
+
+We could check for the set of mounted disks, with blkid (requires sudo), is there a TYPE="crypto_LUKS"?

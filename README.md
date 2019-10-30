@@ -22,7 +22,6 @@ This project is incomplete, here is the progress:
 - [ ] BP: Check for encrypted root disk
 - [ ] BP: Check for swap file
 - [ ] BP: Check for automatic wifi connection (netctl-auto)
-- [ ] BP: Check for straight EFI OS loading
 - [x] BP: ensure intel-ucode exists for processors that need it (any intel for now)
 - [ ] Ensure Gimp font is set to a suitable size (gtkrc 2)
 - [ ] write system font to all config files (e.g gtkrc 2, gtkrc 3.. whereever else? i3 config?)

@@ -34,6 +34,12 @@
 (defn read-deps [system-map]
   (map first (:deps system-map)))
 
+(defn sync-projects
+  "Updates projects under the :sync key"
+  [system-map]
+  (doseq [[pname pcmd] (:sync system-map)]
+    (println "Updating" pname "then executing" pcmd)))
+
 (defn system-update
   "Take the path of a system.edn file and update the system based on this."
   [map-path]
@@ -45,7 +51,8 @@
     (when connected?
       (refresh-database)
       (doseq [dep deps]
-        (ensure dep)))))
+        (ensure dep))
+      (sync-projects system-map))))
 
 (def help-message
   "usage:  citadel <operation> [...]
