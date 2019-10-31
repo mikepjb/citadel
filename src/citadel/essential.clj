@@ -16,9 +16,12 @@
     xorg-xrandr {}
     xorg-server-xvfb {}
     xorg-xinput {}
+    xorg-xdpyinfo {} ;; X utility
+    man {}
     xf86-video-vesa {} ;; generic backup driver
     nvidia {}
     slock {}
+    openssh {}
     xautolock {}
     light {}
     xclip {}
