@@ -5,6 +5,7 @@
   '{pacgraph {} ;; probably required by citadel in future for transient deps
     sudo {}
     xterm {}
+    xorg-xinit {}
     xorg-xmessage {}
     xorg-fonts-75dpi {}
     xorg-fonts-100dpi {}
