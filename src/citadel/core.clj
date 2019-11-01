@@ -31,8 +31,10 @@
   (when-not (exists? package-name)
     (install package-name)))
 
-(defn read-deps [system-map]
-  (map first (:deps system-map)))
+(defn read-official-deps
+  "Returns a list of deps that are available in the official repositories."
+  [system-map]
+  (map first (remove (fn [[_ m]] (contains? m :aur/url)) (:deps system-map))))
 
 (defn sync-projects
   "Updates projects under the :sync key"
@@ -43,14 +45,14 @@
 (defn system-update
   "Take the path of a system.edn file and update the system based on this."
   [map-path]
-  (let [system-map (read-string (slurp map-path))
-        merged-map (essential/with-deps system-map)
-        deps       (map str (read-deps merged-map))]
+  (let [system-map    (read-string (slurp map-path))
+        merged-map    (essential/with-deps system-map)
+        official-deps (map str (read-official-deps merged-map))]
     (println "--> Reading from" map-path)
-    (println deps)
+    (println official-deps)
     (when connected?
       (refresh-database)
-      (doseq [dep deps]
+      (doseq [dep official-deps]
         (ensure dep))
       (sync-projects system-map))))
 

@@ -25,6 +25,7 @@ Even more ideally, we can create custom boot images.
 - Keep installed packages lean (and clean package/notify current size?)
 - Check secure password? (find something small to check security wise, perhaps the presence of a package?)
 - Integration test (test cli input)
+- use UEFI directly https://unix.stackexchange.com/questions/284617/how-to-switch-arch-linux-to-lts-kernel
 
 ## Notes on suggested setup
 

@@ -1,4 +1,5 @@
 {:deps
  {ripgrep {}
   telegram-desktop {}
-  openjdk8-src {:comment "for Clojure source jumping"}}}
+  openjdk8-src {:comment "for Clojure source jumping"}
+  slack-desktop {:aur/url "https://aur.archlinux.org/slack-desktop.git"}}}
