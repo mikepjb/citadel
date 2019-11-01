@@ -1,8 +1,9 @@
 (ns citadel.core
-  (:require [clojure.java.shell :refer [sh]]
+  (:require [clojure.java.shell :refer [with-sh-dir sh]]
             [clojure.java.io :as io]
             [citadel.check :as check]
-            [citadel.essential :as essential])
+            [citadel.essential :as essential]
+            [clojure.string :refer [trim]])
   (:refer-clojure :exclude [ensure])
   (:gen-class))
 
@@ -26,15 +27,41 @@
     (println process)
     (zero? (:exit process))))
 
+(defn install-aur
+  "Installs a package from the AUR, given it's name and git url.
+  This does not support installing other AUR packages the target depends on."
+  [package-name url]
+  (let [temp-dir (trim (:out (sh "mktemp" "-d")))
+        package-dir (str temp-dir "/" package-name)]
+    (println package-dir)
+    (sh "git" "clone" url package-dir)
+    (when (.exists (io/as-file package-dir))
+      (with-sh-dir package-dir
+        (sh "makepkg" "-si"))
+      (sh "rm" package-dir))))
+
 (defn ensure
   [package-name]
   (when-not (exists? package-name)
     (install package-name)))
 
+(defn ensure-aur
+  [package-name url]
+  (when-not (exists? package-name)
+    (install-aur package-name url)))
+
+(def aur-packages (fn [[_ m]] (contains? m :aur/url)))
+
 (defn read-official-deps
   "Returns a list of deps that are available in the official repositories."
   [system-map]
-  (map first (remove (fn [[_ m]] (contains? m :aur/url)) (:deps system-map))))
+  (map first (remove aur-packages (:deps system-map))))
+
+(defn read-aur-deps
+  "Returns a list of aur package names->urls."
+  [system-map]
+  (into {} (map (juxt first (fn [x] (:aur/url (second x))))
+                (filter aur-packages (:deps system-map)))))
 
 (defn sync-projects
   "Updates projects under the :sync key"

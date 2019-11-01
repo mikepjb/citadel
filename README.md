@@ -27,6 +27,8 @@ This project is incomplete, here is the progress:
 - [ ] setting console font too.
 - [ ] Mark versions for packages in `system.edn`
 - [ ] Install AUR packages via `system.edn`
+- [ ] Include creating arch linux chroot jail in 'foreign' linux e.g RHEL/Ubuntu...
+
 
 ### Checks
 - [ ] is using modesetting (better than intel)
