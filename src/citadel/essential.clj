@@ -32,7 +32,9 @@
     unrar {}
     readline {}
     make {}
-    cmake {}})
+    cmake {}
+    linux-firmware {} ;; required for loading ath10k wifi.
+    })
 
 (defn with-deps [system-map]
   (merge-with into {:deps deps} system-map))

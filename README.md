@@ -10,7 +10,7 @@ A tool for Arch Linux, it helps you with 3 tasks:
 2. Install Arch Linux, leading you through some best practices along the way.
 3. Update your system according to a single configuration `system.edn` file.
 
-### Progress
+### Features
 
 This project is incomplete, here is the progress:
 
@@ -28,6 +28,7 @@ This project is incomplete, here is the progress:
 - [ ] Mark versions for packages in `system.edn`
 - [ ] Install AUR packages via `system.edn`
 - [ ] Include creating arch linux chroot jail in 'foreign' linux e.g RHEL/Ubuntu...
+- [ ] Better error feedback for invalid system.edn (e.g noto-fonts-extra without description map -> {})
 
 
 ### Checks

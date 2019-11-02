@@ -1,5 +1,6 @@
 (ns citadel.core
   (:require [clojure.java.shell :refer [with-sh-dir sh]]
+            [me.raynes.conch.low-level :as c]
             [clojure.java.io :as io]
             [citadel.check :as check]
             [citadel.essential :as essential]
@@ -37,7 +38,8 @@
     (sh "git" "clone" url package-dir)
     (when (.exists (io/as-file package-dir))
       (with-sh-dir package-dir
-        (sh "makepkg" "-si"))
+        (let [p (sh "makepkg" "-si" "--noconfirm")]
+          (future (c/stream-to-out p :out))))
       (sh "rm" package-dir))))
 
 (defn ensure
@@ -60,7 +62,7 @@
 (defn read-aur-deps
   "Returns a list of aur package names->urls."
   [system-map]
-  (into {} (map (juxt first (fn [x] (:aur/url (second x))))
+  (into {} (map (juxt (fn [x] (name (first x))) (fn [x] (:aur/url (second x))))
                 (filter aur-packages (:deps system-map)))))
 
 (defn sync-projects
@@ -74,13 +76,16 @@
   [map-path]
   (let [system-map    (read-string (slurp map-path))
         merged-map    (essential/with-deps system-map)
-        official-deps (map str (read-official-deps merged-map))]
+        official-deps (map str (read-official-deps merged-map))
+        aur-deps      (read-aur-deps merged-map)]
     (println "--> Reading from" map-path)
     (println official-deps)
     (when connected?
       (refresh-database)
       (doseq [dep official-deps]
         (ensure dep))
+      (doseq [[pname purl] aur-deps]
+        (ensure-aur pname purl))
       (sync-projects system-map))))
 
 (def help-message
