@@ -17,6 +17,7 @@
     xorg-server-xvfb {}
     xorg-xinput {}
     xorg-xdpyinfo {} ;; X utility
+    xorg-xkill {} ;; point and kill X windows
     man {}
     xf86-video-vesa {} ;; generic backup driver
     nvidia {}
