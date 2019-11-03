@@ -103,7 +103,6 @@
       :update (system-update (second args))
       :check  (check/all)
       :help (println help-message)
-      (println "that is not a valid argument.")
-      )
+      (println (str "that is not a valid argument.\n\n" help-message)))
     (println (str "no operation specified\n\n" help-message)))
   (shutdown-agents)) ;; some processes hang around when using sudo

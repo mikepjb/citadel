@@ -26,9 +26,10 @@ This project is incomplete, here is the progress:
 - [ ] write system font to all config files (e.g gtkrc 2, gtkrc 3.. whereever else? i3 config?)
 - [ ] setting console font too.
 - [ ] Mark versions for packages in `system.edn`
-- [ ] Install AUR packages via `system.edn`
+- [x] Install AUR packages via `system.edn`
 - [ ] Include creating arch linux chroot jail in 'foreign' linux e.g RHEL/Ubuntu...
 - [ ] Better error feedback for invalid system.edn (e.g noto-fonts-extra without description map -> {})
+- [ ] Conch does not seem to stream output when installing AUR packages.
 
 
 ### Checks
